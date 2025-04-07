@@ -5,54 +5,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Temporizador de Meditación</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            padding: 50px;
-            background-color: #f4f4f4;
-        }
-        h1 {
-            color: #444;
-        }
-        #timer {
-            font-size: 48px;
-            margin: 20px 0;
-        }
-        button {
-            padding: 10px 20px;
-            font-size: 16px;
-            cursor: pointer;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <h1>Temporizador de Meditación</h1>
+    <div id="controls">
+        <label for="timeInput">Minutos:</label>
+        <input type="number" id="timeInput" value="10" min="1" max="60">
+        <button onclick="startTimer()">Iniciar</button>
+    </div>
     <div id="timer">10:00</div>
-    <button onclick="startTimer()">Iniciar</button>
-
-    <script>
-        let timer;
-        function startTimer() {
-            let duration = 60 * 10; // 10 minutos
-            let display = document.getElementById('timer');
-
-            clearInterval(timer);
-            timer = setInterval(function () {
-                let minutes = parseInt(duration / 60, 10);
-                let seconds = parseInt(duration % 60, 10);
-
-                minutes = minutes < 10 ? "0" + minutes : minutes;
-                seconds = seconds < 10 ? "0" + seconds : seconds;
-
-                display.textContent = minutes + ":" + seconds;
-
-                if (--duration < 0) {
-                    clearInterval(timer);
-                    display.textContent = "¡Tiempo!";
-                }
-            }, 1000);
-        }
-    </script>
+    <audio id="gong" src="gong.mp3" preload="auto"></audio>
+    <script src="script.js"></script>
 </body>
 </html>
